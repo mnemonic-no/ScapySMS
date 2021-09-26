@@ -87,9 +87,12 @@ p.show2()
 # Testbed suggestions
 I recommend checking out the [QCSuper](https://github.com/P1sec/QCSuper) project. Paired with the right Qualcomm USB modem / Android phone you can use this to create GSM packet captures. This is extremely helpful for seeing how data is sent out from your modem, as well as seeing what the data looks like when it's received.
 
+[SCAT](https://github.com/fgsect/scat) is another tool that works similarly.
+
 # Learn more
 Adaptive Mobile's [Simjacker technical report](https://simjacker.com/) is a good practical example of what can be found when digging into these old technologies.
 
 Also:
+* https://opensource.srlabs.de/projects/simtester/
 * https://www.youtube.com/watch?v=DHhYz9euDB8
 * https://media.defcon.org/DEF%20CON%2021/DEF%20CON%2021%20presentations/DEF%20CON%2021%20-%20Bogdan-Alecu-Attacking-SIM-Toolkit-with-SMS-WP.pdf
