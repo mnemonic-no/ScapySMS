@@ -5,6 +5,11 @@ This framework is designed to assist with fuzzing SIM card applications and, mor
 
 Functionality for sending SMS messages via AT commands to a modem is also included.
 
+# Install
+```python3
+pip install /directory/with/ScapySMS/
+```
+
 # How to use
 It is nearly impossible to use this framework without having the GSM specification side by side as a reference. Some notes on the relevant GSM documents can be found in the `scapysms.py` file itself. Though you'll probably want to start here:
 
@@ -14,9 +19,9 @@ It is nearly impossible to use this framework without having the GSM specificati
 
 ## Building a SMS-SUBMIT PDU
 ```python3
-import scapysms
+import ScapySMS
 
-sms = scapysms.SMSSubmit()
+sms = ScapySMS.SMSSubmit()
 sms.TP_RP = 0
 sms.TP_UDHI = 0
 sms.TP_SRR = 0
@@ -25,7 +30,7 @@ sms.TP_RD = 0
 sms.TP_MTI = 1
 sms.TP_MR = 0
 
-myaddr = scapysms.Address()
+myaddr = ScapySMS.Address()
 myaddr.Type_of_number = 1 # International format, includes country code
 myaddr.Digits = '15558675309'
 sms.TP_DA = myaddr
@@ -43,13 +48,13 @@ print('PDU hex: {}'.format(bytes(sms).hex()))
 ###[ SMS-SUBMIT ]### 
   TP_RP     = 0: TP-Reply-Path parameter is not set in this SMS-SUBMIT/DELIVER
   TP_UDHI   = 0: The TP-UD field contains only the short message
-  TP_SRR    = 0
+  TP_SRR    = 0: A status report is not requested
   TP_VPF    = 10: Relative format
-  TP_RD     = 0
-  TP_MTI    = 1
+  TP_RD     = 0: Instruct the SC to accept an SMS-SUBMIT for an SM still held in the SC which has the same TP-MR and the same TP-DA as a previously submitted SM from the same OA.
+  TP_MTI    = 01: SMS-SUBMIT (in the direction MS to SC)
   TP_MR     = 0
   \TP_DA     \
-   |###[ Address ]### 
+   |###[ Address ]###
    |  Length    = 11
    |  Extension = No extension
    |  Type_of_number= International number
@@ -61,12 +66,12 @@ print('PDU hex: {}'.format(bytes(sms).hex()))
   TP_UDL    = 30
   TP_UD     = fffe480065006c006c006f00200077006f0072006c00640020000c270ffe
 
-PDU hex: 11000b915155685703f90008001efffe480065006c006c006f00200077006f0072006c00640020000c270ffe
+PDU hex:        11000b915155685703f90008001efffe480065006c006c006f00200077006f0072006c00640020000c270ffe
 ```
 
 ## Sending a SMS to a modem
 ```python3
-m = scapysms.Modem('/dev/ttyUSB2')
+m = ScapySMS.Modem('/dev/ttyUSB2')
 m.sendPDU(sms)
 ```
 
@@ -75,7 +80,7 @@ I don't have any good examples to show here, but you can decode a packet from he
 
 ```python3
 bytes = bytes.fromhex(yourhex)
-p = scapysms.CommandPacket(bytes)
+p = ScapySMS.CommandPacket(bytes)
 p.show2()
 ```
 
