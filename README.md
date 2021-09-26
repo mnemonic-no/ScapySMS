@@ -11,7 +11,7 @@ pip install /directory/with/ScapySMS/
 ```
 
 # How to use
-It is nearly impossible to use this framework without having the GSM specification side by side as a reference. Some notes on the relevant GSM documents can be found in the `scapysms.py` file itself. Though you'll probably want to start here:
+It is nearly impossible to use this framework without having the GSM specification side by side as a reference. Some notes on the relevant GSM documents can be found in this packages's source. Though you'll probably want to start here:
 
 * https://en.wikipedia.org/wiki/GSM_03.40 - SMS specification summarized
 * [GSM 03.40](https://www.etsi.org/deliver/etsi_gts/03/0340/05.03.00_60/gsmts_0340v050300p.pdf) - Official SMS specification
